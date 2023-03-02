@@ -18,7 +18,25 @@
     <!-- place navbar here -->
   </header>
   <main>
+    <h1>Consultorio</h1>
+    <table>
+      <tbody id="lista-pacientes">
+      </tbody>
+    </table>
 
+    <form>
+      <label for="nombre">Buscar paciente:</label>
+      <input type="text" id="nombre" name="nombre">
+      <button type="submit" id="buscar-paciente">Buscar</button>
+    </form>
+
+    <h2>Datos del paciente encontrado:</h2>
+    <ul>
+      <li>Nombre: <span id="nombre-paciente"></span></li>
+      <li>Edad: <span id="edad-paciente"></span></li>
+      <li>RUT: <span id="rut-paciente"></span></li>
+      <li>Diagnóstico: <span id="diagnostico-paciente"></span></li>
+    </ul>
   </main>
   <footer>
     <!-- place footer here -->

@@ -69,17 +69,39 @@ class Consultorio {
   // Creando objeto de clase Consultorio
   const consultorio = new Consultorio('Mi Consultorio');
   //Creando objetos de pacientes
-  const paciente1 = new Paciente('Nicolas Bustaamnte', 28, '18549737-2', 'Gripe');
+  const paciente1 = new Paciente('Nicolas Bustamante', 28, '18549737-2', 'Gripe');
   const paciente2 = new Paciente('Dusan Matulic', 41, '9659082-2', 'Dolor de cabeza');
   const paciente3 = new Paciente('Gabriela Tonko', 25, '19633409-2', 'Fractura');
-  
-  consultorio.agregarPaciente(paciente1);
-  consultorio.agregarPaciente(paciente2);
-  consultorio.agregarPaciente(paciente3);
-  
-  // Muestra todos los pacientes
-  console.log(consultorio.pacientes); 
-  // Muestra los datos del paciente encontrado
-  const pacienteEncontrado = consultorio.buscarPaciente('Gabriela Tonko');
-  console.log(pacienteEncontrado); 
-  
+
+    // Obteniendo elementos 
+  const form = document.querySelector('form');
+  const nombreInput = document.getElementById('nombre');
+  const nombrePaciente = document.getElementById('nombre-paciente');
+  const edadPaciente = document.getElementById('edad-paciente');
+  const rutPaciente = document.getElementById('rut-paciente');
+  const diagnosticoPaciente = document.getElementById('diagnostico-paciente');
+
+  // Agregando evento 
+  form.addEventListener('submit', (event) => {
+    event.preventDefault(); // Evita el comportamiento por defecto del formulario
+    
+    // Obteniendo el nombre del paciente a buscar
+    const nombre = nombreInput.value;
+    
+    // Buscando al paciente
+    const pacienteEncontrado = consultorio.buscarPaciente(nombre);
+    
+    // Mostrando los datos del paciente encontrado
+    if (pacienteEncontrado) {
+      nombrePaciente.textContent = pacienteEncontrado.nombre;
+      edadPaciente.textContent = pacienteEncontrado.edad;
+      rutPaciente.textContent = pacienteEncontrado.rut;
+      diagnosticoPaciente.textContent = pacienteEncontrado.diagnostico;
+    } else {
+      // Si no se encuentra al paciente, muestra un mensaje de error
+      nombrePaciente.textContent = '';
+      edadPaciente.textContent = '';
+      rutPaciente.textContent = '';
+      diagnosticoPaciente.textContent = 'Paciente no encontrado';
+    }
+  });
